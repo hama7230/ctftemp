@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from pwn import *
 
-# context(terminal=['tmux', 'splitw', '-h'])  # horizontal split window
+context(terminal=['tmux', 'splitw', '-h'])  # horizontal split window
 # context(terminal=['tmux', 'new-window'])  # open new window
 
 # libc = ELF('${libc}')
