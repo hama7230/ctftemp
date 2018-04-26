@@ -17,15 +17,17 @@ LPORT = ${port}
 def section_addr(name, elf=elf):
     return elf.get_section_by_name(name).header['sh_addr']
 
+def dbg(ss):
+    log.info("%s: 0x%x" % (ss, eval(ss)))
+
 conn = None
 opt = sys.argv.pop(1) if len(sys.argv) > 1 else '?'  # pop option
 if opt in 'rl':
     conn = remote(*{'r': (RHOST, RPORT), 'l': (LHOST, LPORT)}[opt])
 elif opt == 'd':
     gdbscript = """
-    # set environment LD_PRELOAD=${libc}
-    b *{0}
-    c
+    
+    continue
     """.format(hex(elf.symbols['main'] if 'main' in elf.symbols.keys() else elf.entrypoint))
     conn = gdb.debug(['${binary}'], gdbscript=gdbscript)
 else:
