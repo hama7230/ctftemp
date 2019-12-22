@@ -1,7 +1,6 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 import sys
 import os
-import commands
 import string
 
 
@@ -10,7 +9,7 @@ FILEDIR = os.path.realpath(os.path.dirname(__file__))
 TEMPLATE = os.path.join(FILEDIR, 'template.py')
 
 if len(sys.argv) < 4:
-    print >> sys.stderr, "Usage: "+os.path.basename(sys.argv[0])+" <binary> <host> <port> [<libc>]"
+    print("Usage: "+os.path.basename(sys.argv[0])+" <binary> <host> <port> [<libc>]", file=sys.stderr)
 else:
     os.chdir(FILEDIR)
     args = {
